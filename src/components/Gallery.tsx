@@ -67,7 +67,7 @@ export default function Gallery() {
 
         {/* Gallery Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {galleryImages.map((image, index) => (
+          {galleryImages.map((image) => (
             <div
               key={image.id}
               className="group cursor-pointer"

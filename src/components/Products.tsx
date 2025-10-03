@@ -57,7 +57,7 @@ export default function Products() {
         <div className="text-center mb-16">
           <p className="text-primary font-medium text-lg mb-4">100% Natural</p>
           <h2 className="font-display text-4xl md:text-5xl font-bold text-chocolate mb-6">
-            This Week's Flavors
+            This Week&apos;s Flavors
           </h2>
           <p className="text-chocolate/70 text-lg max-w-2xl mx-auto">
             Our artisanal gelato flavors change every week. Each batch is crafted with 

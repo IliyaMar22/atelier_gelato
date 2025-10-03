@@ -103,7 +103,7 @@ export default function Menu() {
             Weekly Menu Updates
           </h3>
           <p className="text-chocolate/70 text-lg mb-8 max-w-2xl mx-auto">
-            Our gelato flavors change every week! Visit us to discover what's new, 
+            Our gelato flavors change every week! Visit us to discover what&apos;s new, 
             or follow us on social media to see our latest creations.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">

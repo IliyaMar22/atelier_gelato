@@ -15,7 +15,7 @@ interface InstagramPost {
 export default function InstagramFeed() {
   const [posts, setPosts] = useState<InstagramPost[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [, setError] = useState<string | null>(null);
 
   // Mock data for demonstration - in production, you'd use Instagram Basic Display API
   const mockPosts: InstagramPost[] = [
@@ -78,7 +78,7 @@ export default function InstagramFeed() {
         await new Promise(resolve => setTimeout(resolve, 1000));
         setPosts(mockPosts);
         setError(null);
-      } catch (err) {
+      } catch {
         setError('Failed to load Instagram posts');
         setPosts(mockPosts); // Fallback to mock data
       } finally {
@@ -87,7 +87,7 @@ export default function InstagramFeed() {
     };
 
     fetchPosts();
-  }, []);
+  }, [mockPosts]);
 
   const handlePostClick = (permalink: string) => {
     window.open(permalink, '_blank', 'noopener,noreferrer');
@@ -215,7 +215,7 @@ export default function InstagramFeed() {
         {/* Call to Action */}
         <div className="text-center">
           <p className="text-chocolate/70 text-lg mb-6">
-            Don't miss our daily updates and special offers!
+            Don&apos;t miss our daily updates and special offers!
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a

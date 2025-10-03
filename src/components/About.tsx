@@ -14,7 +14,7 @@ export default function About() {
             <div>
               <p className="text-primary font-medium text-lg mb-4">Tradition and Love</p>
               <h2 className="font-display text-4xl md:text-5xl font-bold text-chocolate mb-6">
-                How It's Made?
+                How It&apos;s Made?
               </h2>
             </div>
 
@@ -96,7 +96,7 @@ export default function About() {
             <h3 className="font-display text-xl font-bold text-chocolate mb-4">Serving</h3>
             <p className="text-chocolate/70">
               Freshly made and served at the perfect temperature, our gelato is ready 
-              to create those special "Baci moments" every day.
+              to create those special &quot;Baci moments&quot; every day.
             </p>
           </div>
         </div>

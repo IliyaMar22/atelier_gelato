@@ -132,7 +132,7 @@ export default function Footer() {
           </p>
           <p className="text-white/60 text-sm">
             Every scoop is made with love and the finest natural ingredients. 
-            We can't wait to create your next "Baci moment"!
+            We can&apos;t wait to create your next &quot;Baci moment&quot;!
           </p>
         </div>
       </div>

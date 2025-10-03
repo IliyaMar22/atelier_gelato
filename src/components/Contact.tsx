@@ -10,7 +10,7 @@ export default function Contact() {
           </h2>
           <p className="text-lg text-chocolate/80 max-w-2xl mx-auto">
             Come experience the magic of our gelato and desserts in person. 
-            We're located in the heart of Sofia and ready to create your next "Baci moment"!
+            We&apos;re located in the heart of Sofia and ready to create your next &quot;Baci moment&quot;!
           </p>
         </div>
 
