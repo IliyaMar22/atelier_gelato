@@ -4,7 +4,6 @@ import Products from "@/components/Products";
 import Desserts from "@/components/Desserts";
 import Gallery from "@/components/Gallery";
 import Menu from "@/components/Menu";
-import InstagramFeed from "@/components/InstagramFeed";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
@@ -17,7 +16,6 @@ export default function Home() {
       <Desserts />
       <Gallery />
       <Menu />
-      <InstagramFeed />
       <Contact />
       <Footer />
     </main>

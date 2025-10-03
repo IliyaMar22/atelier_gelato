@@ -11,7 +11,7 @@ export default function Desserts() {
       id: 1,
       name: "Tiramisu",
       description: "Our signature tiramisu - layers of coffee-soaked ladyfingers, mascarpone cream, and cocoa powder",
-      image: "/images/gallery/gallery2.jpg",
+      image: "/images/desserts/cheesecake.jpg",
       placeholder: "🍰",
       category: "Classic Italian",
       allergens: ["eggs", "milk"],
@@ -105,7 +105,7 @@ export default function Desserts() {
                 <div className="bg-gradient-to-br from-amber-200 to-amber-300 rounded-2xl p-8 shadow-lg">
                   <div className="aspect-square relative rounded-xl overflow-hidden">
                     <Image
-                      src="/images/gallery/gallery2.jpg"
+                      src="/images/desserts/cheesecake.jpg"
                       alt="Our signature tiramisu"
                       fill
                       className="object-cover"
