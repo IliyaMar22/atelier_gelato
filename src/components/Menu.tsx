@@ -15,7 +15,7 @@ const menuSections = [
     id: 2,
     title: "Desserts",
     description: "Traditional Italian desserts and sweet treats",
-    image: "/images/menu/menu2.jpg", 
+    image: "/images/gallery/gallery2.jpg", 
     placeholder: "🍰"
   },
   {
