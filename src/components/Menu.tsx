@@ -8,90 +8,117 @@ const menuSections = [
     id: 1,
     title: "Gelato Flavors",
     description: "Our weekly rotating selection of artisanal gelato",
-    image: "/images/menu/menu1.jpg",
+    images: [
+      "/images/menu/menu1.jpg",
+      "/images/menu/menu2.jpg", 
+      "/images/menu/menu3.jpg",
+      "/images/menu/menu4.jpg",
+      "/images/menu/menu5.jpg",
+      "/images/menu/menu6.jpg"
+    ],
     placeholder: "🍨"
   },
   {
     id: 2,
     title: "Desserts",
     description: "Traditional Italian desserts and sweet treats",
-    image: "/images/gallery/gallery2.jpg", 
+    images: [
+      "/images/gallery/gallery2.jpg",
+      "/images/desserts/lemon-tart.jpg",
+      "/images/desserts/cheesecake.jpg"
+    ],
     placeholder: "🍰"
   },
   {
     id: 3,
     title: "Beverages",
     description: "Coffee, tea, and refreshing drinks",
-    image: "/images/gallery/gallery3.jpg",
+    images: [
+      "/images/gallery/gallery3.jpg"
+    ],
     placeholder: "☕"
   }
 ];
 
 export default function Menu() {
   const [selectedMenu, setSelectedMenu] = useState<number | null>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const nextImage = () => {
+    const currentMenu = menuSections.find(m => m.id === selectedMenu);
+    if (currentMenu) {
+      setCurrentImageIndex((prev) => 
+        prev === currentMenu.images.length - 1 ? 0 : prev + 1
+      );
+    }
+  };
+
+  const prevImage = () => {
+    const currentMenu = menuSections.find(m => m.id === selectedMenu);
+    if (currentMenu) {
+      setCurrentImageIndex((prev) => 
+        prev === 0 ? currentMenu.images.length - 1 : prev - 1
+      );
+    }
+  };
 
   return (
-    <section id="menu" className="py-20 bg-white">
+    <section id="menu" className="py-20 bg-vanilla">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-16">
-          <h2 className="font-display text-4xl md:text-5xl font-bold text-chocolate mb-6">
-            Our Menu
-          </h2>
+          <p className="text-primary font-medium text-lg mb-4">Our Offerings</p>
+          <h2 className="font-display text-4xl md:text-5xl font-bold text-chocolate mb-6">Explore Our Menu</h2>
           <p className="text-chocolate/70 text-lg max-w-2xl mx-auto">
-            Discover our complete selection of gelato flavors, desserts, and beverages. 
-            Our menu changes weekly to bring you the freshest and most exciting flavors.
+            Discover our full range of gelato, desserts, and beverages.
           </p>
         </div>
 
-        {/* Menu Sections */}
+        {/* Menu Sections Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          {menuSections.map((section) => (
+          {menuSections.map((menu) => (
             <div
-              key={section.id}
-              className="group cursor-pointer"
-              onClick={() => setSelectedMenu(section.id)}
+              key={menu.id}
+              className="bg-white rounded-3xl shadow-xl overflow-hidden group cursor-pointer hover:shadow-2xl transition-all duration-300"
+              onClick={() => {
+                setSelectedMenu(menu.id);
+                setCurrentImageIndex(0);
+              }}
             >
-              <div className="bg-gradient-to-br from-cream to-vanilla rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                <div className="aspect-square relative mb-4 rounded-xl overflow-hidden">
-                  <Image
-                    src={section.image}
-                    alt={section.title}
-                    fill
-                    className="object-cover"
-                    onError={(e) => {
-                      // Fallback to placeholder if image fails to load
-                      const target = e.target as HTMLImageElement;
-                      target.style.display = 'none';
-                      const parent = target.parentElement;
-                      if (parent) {
-                        parent.innerHTML = `
-                          <div class="w-full h-full bg-gradient-to-br from-pink-200 to-pink-300 flex items-center justify-center">
-                            <div class="text-center">
-                              <div class="w-20 h-20 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                                <span class="text-white text-3xl">${section.placeholder}</span>
-                              </div>
-                              <p class="text-chocolate font-medium">${section.title}</p>
+              <div className="relative aspect-video">
+                <Image
+                  src={menu.images[0]}
+                  alt={menu.title}
+                  fill
+                  className="object-cover group-hover:scale-105 transition-transform duration-300"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    const parent = target.parentElement;
+                    if (parent) {
+                      parent.innerHTML = `
+                        <div class="w-full h-full bg-gradient-to-br from-cream to-vanilla flex items-center justify-center">
+                          <div class="text-center">
+                            <div class="w-24 h-24 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
+                              <span class="text-white text-4xl">${menu.placeholder}</span>
                             </div>
+                            <p class="text-chocolate font-medium">${menu.title}</p>
+                            <p class="text-chocolate/60 text-sm">Click to view menu</p>
                           </div>
-                        `;
-                      }
-                    }}
-                  />
-                </div>
-                <h3 className="font-display text-xl font-bold text-chocolate mb-2">
-                  {section.title}
-                </h3>
-                <p className="text-chocolate/70 text-sm mb-4">
-                  {section.description}
-                </p>
-                <div className="flex justify-center">
-                  <div className="w-8 h-8 bg-primary/20 rounded-full flex items-center justify-center group-hover:bg-primary/30 transition-colors">
-                    <svg className="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
+                        </div>
+                      `;
+                    }
+                  }}
+                />
+                {menu.images.length > 1 && (
+                  <div className="absolute top-4 right-4 bg-white/90 rounded-full px-2 py-1 text-xs font-medium text-chocolate">
+                    {menu.images.length} photos
                   </div>
-                </div>
+                )}
+              </div>
+              <div className="p-6 text-center">
+                <h3 className="font-display text-2xl font-bold text-chocolate mb-2">{menu.title}</h3>
+                <p className="text-chocolate/70 text-sm">{menu.description}</p>
               </div>
             </div>
           ))}
@@ -120,13 +147,16 @@ export default function Menu() {
         </div>
       </div>
 
-      {/* Menu Detail Modal */}
+      {/* Menu Detail Modal with Image Carousel */}
       {selectedMenu && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center p-4 z-50">
           <div className="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <div className="relative">
               <button
-                onClick={() => setSelectedMenu(null)}
+                onClick={() => {
+                  setSelectedMenu(null);
+                  setCurrentImageIndex(0);
+                }}
                 className="absolute top-4 right-4 z-10 w-8 h-8 bg-white/90 rounded-full flex items-center justify-center text-chocolate hover:bg-white transition-colors"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -134,14 +164,13 @@ export default function Menu() {
                 </svg>
               </button>
               
-              <div className="aspect-video relative">
+              <div className="aspect-video relative rounded-t-2xl overflow-hidden">
                 <Image
-                  src={menuSections.find(s => s.id === selectedMenu)?.image || ''}
-                  alt={menuSections.find(s => s.id === selectedMenu)?.title || ''}
+                  src={menuSections.find(m => m.id === selectedMenu)?.images[currentImageIndex] || ''}
+                  alt={`${menuSections.find(m => m.id === selectedMenu)?.title} - Image ${currentImageIndex + 1}`}
                   fill
-                  className="object-cover rounded-t-2xl"
+                  className="object-contain"
                   onError={(e) => {
-                    // Fallback to placeholder if image fails to load
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
                     const parent = target.parentElement;
@@ -149,14 +178,14 @@ export default function Menu() {
                       parent.innerHTML = `
                         <div class="w-full h-full bg-gradient-to-br from-cream to-vanilla flex items-center justify-center">
                           <div class="text-center">
-                            <div class="w-32 h-32 bg-gradient-to-br from-pink-400 to-pink-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                              <span class="text-white text-6xl">${menuSections.find(s => s.id === selectedMenu)?.placeholder}</span>
+                            <div class="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
+                              <span class="text-white text-6xl">${menuSections.find(m => m.id === selectedMenu)?.placeholder}</span>
                             </div>
                             <h3 class="text-2xl font-bold text-chocolate mb-2">
-                              ${menuSections.find(s => s.id === selectedMenu)?.title}
+                              ${menuSections.find(m => m.id === selectedMenu)?.title}
                             </h3>
                             <p class="text-chocolate/70">
-                              ${menuSections.find(s => s.id === selectedMenu)?.description}
+                              ${menuSections.find(m => m.id === selectedMenu)?.description}
                             </p>
                           </div>
                         </div>
@@ -164,21 +193,44 @@ export default function Menu() {
                     }
                   }}
                 />
+                
+                {/* Navigation arrows for multiple images */}
+                {menuSections.find(m => m.id === selectedMenu)?.images.length > 1 && (
+                  <>
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-chocolate hover:bg-white transition-colors"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                      </svg>
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-chocolate hover:bg-white transition-colors"
+                    >
+                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                      </svg>
+                    </button>
+                  </>
+                )}
+                
+                {/* Image counter */}
+                {menuSections.find(m => m.id === selectedMenu)?.images.length > 1 && (
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
+                    {currentImageIndex + 1} / {menuSections.find(m => m.id === selectedMenu)?.images.length}
+                  </div>
+                )}
               </div>
               
-              <div className="p-8">
-                <h3 className="text-3xl font-bold text-chocolate mb-4">
-                  {menuSections.find(s => s.id === selectedMenu)?.title}
+              <div className="p-6 text-center">
+                <h3 className="font-display text-3xl font-bold text-chocolate mb-2">
+                  {menuSections.find(m => m.id === selectedMenu)?.title}
                 </h3>
-                <p className="text-chocolate/80 text-lg">
-                  {menuSections.find(s => s.id === selectedMenu)?.description}
+                <p className="text-chocolate/80">
+                  {menuSections.find(m => m.id === selectedMenu)?.description}
                 </p>
-                <div className="mt-6 p-4 bg-cream rounded-lg">
-                  <p className="text-chocolate/70 text-sm text-center">
-                    This is a placeholder for the actual menu image. When you provide the menu photos, 
-                    they will be displayed here with proper optimization and responsive sizing.
-                  </p>
-                </div>
               </div>
             </div>
           </div>
