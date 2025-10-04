@@ -44,8 +44,9 @@ export default function Menu() {
   const [selectedMenu, setSelectedMenu] = useState<number | null>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  const currentMenu = selectedMenu ? menuSections.find(m => m.id === selectedMenu) : null;
+
   const nextImage = () => {
-    const currentMenu = menuSections.find(m => m.id === selectedMenu);
     if (currentMenu) {
       setCurrentImageIndex((prev) => 
         prev === currentMenu.images.length - 1 ? 0 : prev + 1
@@ -54,7 +55,6 @@ export default function Menu() {
   };
 
   const prevImage = () => {
-    const currentMenu = menuSections.find(m => m.id === selectedMenu);
     if (currentMenu) {
       setCurrentImageIndex((prev) => 
         prev === 0 ? currentMenu.images.length - 1 : prev - 1
@@ -166,8 +166,8 @@ export default function Menu() {
               
               <div className="aspect-video relative rounded-t-2xl overflow-hidden">
                 <Image
-                  src={menuSections.find(m => m.id === selectedMenu)?.images[currentImageIndex] || ''}
-                  alt={`${menuSections.find(m => m.id === selectedMenu)?.title} - Image ${currentImageIndex + 1}`}
+                  src={currentMenu?.images[currentImageIndex] || ''}
+                  alt={`${currentMenu?.title} - Image ${currentImageIndex + 1}`}
                   fill
                   className="object-contain"
                   onError={(e) => {
@@ -179,13 +179,13 @@ export default function Menu() {
                         <div class="w-full h-full bg-gradient-to-br from-cream to-vanilla flex items-center justify-center">
                           <div class="text-center">
                             <div class="w-32 h-32 bg-gradient-to-br from-primary to-secondary rounded-full mx-auto mb-4 flex items-center justify-center">
-                              <span class="text-white text-6xl">${menuSections.find(m => m.id === selectedMenu)?.placeholder}</span>
+                              <span class="text-white text-6xl">${currentMenu?.placeholder}</span>
                             </div>
                             <h3 class="text-2xl font-bold text-chocolate mb-2">
-                              ${menuSections.find(m => m.id === selectedMenu)?.title}
+                              ${currentMenu?.title}
                             </h3>
                             <p class="text-chocolate/70">
-                              ${menuSections.find(m => m.id === selectedMenu)?.description}
+                              ${currentMenu?.description}
                             </p>
                           </div>
                         </div>
@@ -195,7 +195,7 @@ export default function Menu() {
                 />
                 
                 {/* Navigation arrows for multiple images */}
-                {menuSections.find(m => m.id === selectedMenu)?.images.length > 1 && (
+                {currentMenu && currentMenu.images.length > 1 && (
                   <>
                     <button
                       onClick={prevImage}
@@ -217,19 +217,19 @@ export default function Menu() {
                 )}
                 
                 {/* Image counter */}
-                {menuSections.find(m => m.id === selectedMenu)?.images.length > 1 && (
+                {currentMenu && currentMenu.images.length > 1 && (
                   <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-3 py-1 rounded-full text-sm">
-                    {currentImageIndex + 1} / {menuSections.find(m => m.id === selectedMenu)?.images.length}
+                    {currentImageIndex + 1} / {currentMenu.images.length}
                   </div>
                 )}
               </div>
               
               <div className="p-6 text-center">
                 <h3 className="font-display text-3xl font-bold text-chocolate mb-2">
-                  {menuSections.find(m => m.id === selectedMenu)?.title}
+                  {currentMenu?.title}
                 </h3>
                 <p className="text-chocolate/80">
-                  {menuSections.find(m => m.id === selectedMenu)?.description}
+                  {currentMenu?.description}
                 </p>
               </div>
             </div>
