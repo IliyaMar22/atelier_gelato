@@ -78,14 +78,14 @@ export default function Contact() {
           <div className="bg-white rounded-3xl shadow-xl overflow-hidden">
             <div className="aspect-video">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2933.1234567890!2d23.1234567890!3d42.1234567890!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa8682c4c4c4c4%3A0x1234567890abcdef!2sulitsa%20Georgi%20Sava%20Rakovski%20149%2C%20Sofia%2C%20Bulgaria!5e0!3m2!1sen!2sbg!4v1234567890123!5m2!1sen!2sbg"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2933.1234567890!2d23.3255561!3d42.6916886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40aa85043b60b171:0x5123458baa96f663!2sAtelier%20Del%20Gelato%20Baci!5e0!3m2!1sen!2sbg!4v1234567890123!5m2!1sen!2sbg"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Atelier del Gelato Location"
+                title="Atelier del Gelato Baci Location"
               ></iframe>
             </div>
             <div className="p-6">
@@ -99,7 +99,7 @@ export default function Contact() {
                 </div>
                 <div className="mt-4 md:mt-0">
                   <a
-                    href="https://www.google.com/maps/dir/?api=1&destination=ulitsa+Georgi+Sava+Rakovski+149%2C+Sofia%2C+Bulgaria"
+                    href="https://www.google.com/maps/place/Atelier+Del+Gelato+Baci/@42.6916886,23.3255561,17z/data=!3m1!4b1!4m6!3m5!1s0x40aa85043b60b171:0x5123458baa96f663!8m2!3d42.6916886!4d23.3255561!16s%2Fg%2F11fjbqnw_n?entry=ttu"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center bg-primary text-white px-6 py-3 rounded-full hover:bg-pink-600 transition-colors font-medium"
